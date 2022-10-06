@@ -35,8 +35,12 @@ jobs:
         
     - name : 同步爬取结果至github
       uses: actions/upload-artifact@master
-      if: always()
+#       if: always()
       with:
         name: 爬取结果
-        path: ${{ github.workspace }}/
+        path: |
+          ${{ github.workspace }}/articles/
+          ${{ github.workspace }}/cuts/
+          ${{ github.workspace }}/articles_list.json
+          ${{ github.workspace }}/output.json
         
