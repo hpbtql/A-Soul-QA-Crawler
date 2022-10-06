@@ -34,8 +34,7 @@ jobs:
       run: python crawler.py
         
     - name : 同步爬取结果至github
-      uses: actions/upload-artifact@master
-#       if: always()
+      uses: actions/upload-artifact@v3
       with:
         name: 爬取结果
         path: |
