@@ -4,10 +4,6 @@
 name: 每周自动爬取QA信息
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
   schedule:
   - cron: "0 8 * * 3"
   workflow_dispatch:
@@ -35,6 +31,12 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         
     - name: 爬取QA信息
-      run: |
-        python crawler.py
+      run: python crawler.py
+        
+    - name : 同步爬取结果至github
+      uses: actions/upload-artifact@master
+      if: always()
+      with:
+        name: 爬取结果
+        path: ${{ github.workspace }}/
         
